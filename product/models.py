@@ -1,5 +1,6 @@
 from django.db import models
 from laboratory.models import Laboratory
+from django.apps import apps
 
 class Product(models.Model):
     laboratory = models.ForeignKey(Laboratory, on_delete=models.CASCADE, related_name='products')
@@ -20,13 +21,13 @@ class Product(models.Model):
 
 
 class ProductUnit(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='units')
-    batch = models.ForeignKey('batch.Batch', on_delete=models.CASCADE, related_name='units')
-    serie = models.CharField(max_length=100, unique=True)
+    serial_number = models.CharField(max_length=100, unique=True)
+    product = models.ForeignKey('product.Product', on_delete=models.CASCADE, related_name='units')
+    batch = models.ForeignKey('batch.Batch', on_delete=models.SET_NULL, null=True, blank=True, related_name='product_units')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Serie: {self.serie} ({self.product.name})"
+        return f"{self.serial_number} - {self.product.name}"
 
 
 

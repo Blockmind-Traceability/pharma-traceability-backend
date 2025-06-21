@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions
-from .models import Product
-from .serializers import ProductSerializer
+from .models import Product, ProductUnit
+from .serializers import ProductSerializer, ProductUnitSerializer
 from .permissions import IsLaboratoryOwner
 from laboratory.models import Laboratory
 
@@ -33,4 +33,15 @@ class UpdateProductView(generics.UpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [permissions.IsAuthenticated, IsLaboratoryOwner]
+
+
+
+class ProductUnitCreateView(generics.CreateAPIView):
+    queryset = ProductUnit.objects.all()
+    serializer_class = ProductUnitSerializer
+
+class ProductUnitListView(generics.ListAPIView):
+    queryset = ProductUnit.objects.all()
+    serializer_class = ProductUnitSerializer
+
 
