@@ -10,4 +10,3 @@ class LaboratoryStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Laboratory
         fields = ['status']
-

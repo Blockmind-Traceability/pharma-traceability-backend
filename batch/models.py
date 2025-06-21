@@ -7,8 +7,10 @@ class Batch(models.Model):
     origin = models.CharField(max_length=255)
     destination = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
-    qr_code = models.TextField(blank=True, null=True)  # futura funcionalidad
-    is_editable = models.BooleanField(default=True)
+    qr_code = models.ImageField(upload_to='qr_codes/', null=True, blank=True)
+
+    def __str__(self):
+        return f"Lote #{self.id} - {self.origin} → {self.destination}"
 
 class Series(models.Model):
     batch = models.ForeignKey(Batch, on_delete=models.CASCADE, related_name='series')
