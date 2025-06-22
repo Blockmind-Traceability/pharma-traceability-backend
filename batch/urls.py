@@ -4,7 +4,10 @@ from .views import (
     ListBatchView,
     RetrieveBatchView,
     RetrieveBatchBySerieView,
-    UpdateBatchView
+    UpdateBatchView,
+    BatchDetailView, 
+    BatchBySerieView, 
+    BatchUpdateView
 )
 
 urlpatterns = [
@@ -13,4 +16,8 @@ urlpatterns = [
     path('<int:pk>/', RetrieveBatchView.as_view(), name='batch_detail'),  # GET by id
     path('series/<str:serie>/', RetrieveBatchBySerieView.as_view(), name='batch_by_serie'),  # GET by serie
     path('<int:pk>/edit/', UpdateBatchView.as_view(), name='update_batch'),  # PUT
+
+    path('<int:id>/', BatchDetailView.as_view(), name='batch-detail'),
+    path('by-serie/<str:serie_code>/', BatchBySerieView.as_view(), name='batch-by-serie'),
+    path('<int:id>/update/', BatchUpdateView.as_view(), name='batch-update'),
 ]
