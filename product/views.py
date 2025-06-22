@@ -1,8 +1,10 @@
+
 from rest_framework import generics, permissions
 from .models import Product, ProductUnit
 from .serializers import ProductSerializer, ProductUnitSerializer
 from .permissions import IsLaboratoryOwner
 from laboratory.models import Laboratory
+from core_backend.fabric_interface import invoke_chaincode
 
 # POST /api/v1/products
 class CreateProductView(generics.CreateAPIView):
@@ -35,10 +37,27 @@ class UpdateProductView(generics.UpdateAPIView):
     permission_classes = [permissions.IsAuthenticated, IsLaboratoryOwner]
 
 
-
 class ProductUnitCreateView(generics.CreateAPIView):
     queryset = ProductUnit.objects.all()
     serializer_class = ProductUnitSerializer
+    permission_classes = [permissions.IsAuthenticated]  # Asegura autenticación
+
+    def perform_create(self, serializer):
+        unit = serializer.save()
+
+        # Aquí construyes los datos para blockchain
+        args = [
+            str(unit.id),
+            str(unit.product.id),
+            str(unit.product.name),
+            str(unit.product.laboratory.id)
+        ]
+
+        # Puedes usar un nombre más representativo de función en tu chaincode, como RegisterProductUnit
+        result = invoke_chaincode("RegisterProductUnit", args)
+        print("Blockchain result:", result)
+
+
 
 class ProductUnitListView(generics.ListAPIView):
     queryset = ProductUnit.objects.all()

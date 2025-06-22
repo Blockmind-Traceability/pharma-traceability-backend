@@ -6,6 +6,7 @@ from .serializers import BatchDetailSerializer
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from core_backend.fabric_interface import invoke_chaincode
 
 class CreateBatchView(generics.CreateAPIView):
     serializer_class = BatchSerializer
@@ -13,7 +14,18 @@ class CreateBatchView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         lab = self.request.user.laboratory
-        serializer.save(laboratory=lab)
+        instance = serializer.save(laboratory=lab)
+
+        for serie in instance.series.all():
+            args = [
+                str(serie.id),
+                str(instance.id),
+                instance.origin,
+                instance.destination
+            ]
+            result = invoke_chaincode("LinkUnitToBatch", args)
+            print("Blockchain result:", result)
+
 
 class ListBatchView(generics.ListAPIView):
     serializer_class = BatchSerializer
