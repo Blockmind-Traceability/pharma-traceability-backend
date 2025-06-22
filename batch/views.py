@@ -24,7 +24,7 @@ class ListBatchView(generics.ListAPIView):
 
 class RetrieveBatchView(generics.RetrieveAPIView):
     queryset = Batch.objects.all()
-    serializer_class = BatchSerializer
+    serializer_class = BatchDetailSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 class RetrieveBatchBySerieView(generics.RetrieveAPIView):
