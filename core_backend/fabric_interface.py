@@ -4,7 +4,7 @@ import os
 # Variables de entorno para usar la CLI de Fabric
 FABRIC_ENV = {
     "CORE_PEER_LOCALMSPID": "Org1MSP",
-    "CORE_PEER_ADDRESS": "localhost:7051",
+    "CORE_PEER_ADDRESS": "172.18.0.2:7051",
     "CORE_PEER_MSPCONFIGPATH": "/root/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp",
     "CORE_PEER_TLS_ROOTCERT_FILE": "/root/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt",
     "FABRIC_CFG_PATH": "/root/fabric-samples/config/"
@@ -12,13 +12,17 @@ FABRIC_ENV = {
 
 ORDERER_CA = "/root/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem"
 
+PEER_BINARY_PATH = "/root/fabric-samples/bin/peer"
+
+
+
 
 def invoke_chaincode(function, args):
     # Convertimos los argumentos a cadena JSON con comillas
     json_args = ','.join(f'"{arg}"' for arg in args)
 
     cmd = [
-        "peer", "chaincode", "invoke",
+        PEER_BINARY_PATH, "chaincode", "invoke",
         "-o", "localhost:7050",
         "--ordererTLSHostnameOverride", "orderer.example.com",
         "--tls", "--cafile", ORDERER_CA,
