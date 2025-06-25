@@ -13,6 +13,20 @@ from rest_framework.permissions import IsAuthenticated
 import hashlib
 
 
+def validate_required_fields(data, required_fields):
+    for field in required_fields:
+        if field not in data:
+            return Response({"error": f"Campo '{field}' requerido."}, status=status.HTTP_400_BAD_REQUEST)
+    return None
+
+def get_user_laboratory(user):
+    try:
+        return user.laboratory, None
+    except Laboratory.DoesNotExist:
+        return None, Response({"error": "El usuario no tiene laboratorio asociado"}, status=400)
+
+
+
 # POST /api/v1/products
 class CreateProductView(generics.CreateAPIView):
     serializer_class = ProductSerializer
@@ -125,16 +139,14 @@ class RegisterBlockchainEventView(APIView):
         data = request.data
 
         # Validaciones mínimas
-        required_fields = ['productSerial', 'batchId', 'eventType', 'destination', 'deviceInfo', 'responsible', 'geolocation']
-        for field in required_fields:
-            if field not in data:
-                return Response({"error": f"Campo '{field}' requerido."}, status=status.HTTP_400_BAD_REQUEST)
+        error_response = validate_required_fields(data, ['productSerial', 'batchId', 'eventType', 'destination', 'deviceInfo', 'responsible', 'geolocation'])
+        if error_response:
+            return error_response
 
         # 1. Recuperar laboratorio
-        try:
-            lab = user.laboratory
-        except Laboratory.DoesNotExist:
-            return Response({"error": "El usuario no tiene laboratorio asociado"}, status=400)
+        lab, error_response = get_user_laboratory(user)
+        if error_response:
+            return error_response
 
         # 2. Trazar producto para obtener el último evento (origen)
         try:
