@@ -2,6 +2,8 @@ from rest_framework import serializers
 from .models import Batch, Series
 from product.models import ProductUnit, Product
 from product.serializers import ProductSerializer
+from blockchain_client.services import register_event
+from blockchain_client.models import BlockchainEvent, Responsible, Geolocation
 
 
 class SeriesSerializer(serializers.ModelSerializer):
@@ -22,35 +24,61 @@ class BatchSerializer(serializers.ModelSerializer):
         fields = ['id', 'origin', 'destination', 'qr_code', 'created_at', 'series']
 
     def create(self, validated_data):
+        request = self.context.get('request')
+        lab = request.user.laboratory
         series_data = validated_data.pop('series', [])
         batch = Batch.objects.create(**validated_data)
 
-        # Asociar ProductUnit con el batch y crear registro en Series
         for serial in series_data:
             try:
                 product_unit = ProductUnit.objects.get(serial_number=serial)
                 Series.objects.create(
                     batch=batch,
                     serie_code=serial,
-                    product=product_unit.product  # asegurar que ProductUnit tenga un FK a Product
+                    product=product_unit.product
                 )
-                # Vincular ProductUnit al Batch si tiene el campo batch
                 product_unit.batch = batch
                 product_unit.save()
+
+                # Crear evento shipment
+                event = BlockchainEvent(
+                    labId=str(lab.id),
+                    eventType="shipment",
+                    productSerial=serial,
+                    batchId=str(batch.id),
+                    origin=batch.origin,
+                    destination=batch.destination,
+                    currentLocation=batch.destination,
+                    responsible=Responsible(
+                        name=request.user.username,
+                        role="lab",
+                        entity=lab.business_name,
+                        documentId=lab.dni_representante
+                    ),
+                    notes=f"Unidad serial {serial} agregada al lote #{batch.id}",
+                    digitalSignature="FIRMA_AUTO",
+                    deviceInfo="Sistema Django",
+                    geolocation=Geolocation(
+                        ip=self.get_client_ip(request),
+                        lat=-12.0464,
+                        lng=-77.0428
+                    )
+                )
+                register_event(event)
+
             except ProductUnit.DoesNotExist:
                 raise serializers.ValidationError(f"El número de serie '{serial}' no existe en ProductUnit.")
+            except Exception as e:
+                print(f"⚠️ Error al registrar evento shipment de {serial}: {e}")
 
         return batch
 
-    def update(self, instance, validated_data):
-        if hasattr(instance, 'is_editable') and not instance.is_editable:
-            raise serializers.ValidationError("Este lote no puede ser editado.")
-
-        instance.origin = validated_data.get('origin', instance.origin)
-        instance.destination = validated_data.get('destination', instance.destination)
-        instance.save()
-        return instance
-
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            return x_forwarded_for.split(',')[0]
+        return request.META.get('REMOTE_ADDR', '127.0.0.1')
+    
 
 class BatchDetailSerializer(serializers.ModelSerializer):
     series = SeriesSerializer(many=True, read_only=True)
