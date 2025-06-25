@@ -25,6 +25,8 @@ class CreateLaboratoryView(generics.CreateAPIView):
             create_genesis_block(genesis_data)
         except Exception as e:
             print(f"Error creando bloque génesis: {e}")
+            if hasattr(e, 'response') and e.response is not None:
+                print("Detalle del error:", e.response.text)
 
 # GET /api/v1/laboratories
 class ListLaboratoriesView(generics.ListAPIView):

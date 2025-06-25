@@ -6,7 +6,7 @@ BASE_URL = "https://blockchain-connection-production.up.railway.app/api"
 
 def create_genesis_block(data: GenesisBlock):
     response = requests.post(f"{BASE_URL}/genesis", json=data.__dict__)
-    if response.status_code != 200:
+    if not response.ok:
         raise BlockchainAPIError("Error creando bloque génesis", response)
     return response.json()
 

@@ -68,8 +68,8 @@ class ProductUnitCreateView(generics.CreateAPIView):
                 deviceInfo="Sistema Django",
                 geolocation=Geolocation(
                     ip=self.get_client_ip(),
-                    lat=0, 
-                    lng=0
+                    lat=10, 
+                    lng=10
                 )
             )
 
