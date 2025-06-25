@@ -1,4 +1,1159 @@
-﻿[
+﻿# 📋 PROYECTO COMPLETO: Pharma Traceability Backend
+
+> **Generado automáticamente el:** 2025-06-25 01:31:47
+> **Directorio base:** C:\tesis\pharma-traceability-backend
+> **Total de archivos:** 67
+
+## 📁 ESTRUCTURA DEL PROYECTO
+
+```
+Listado de rutas de carpetas
+El n·mero de serie del volumen es 3E69-84F1
+C:\TESIS\PHARMA-TRACEABILITY-BACKEND
+|   .gitignore
+|   aok.ps1
+|   aok2.ps1
+|   estructura_proyecto.json
+|   manage.py
+|   requirements.txt
+|   
++---authentication
+|   |   admin.py
+|   |   apps.py
+|   |   models.py
+|   |   serializers.py
+|   |   tests.py
+|   |   urls.py
+|   |   views.py
+|   |   __init__.py
+|   |   
+|   \---migrations
+|           0001_initial.py
+|           __init__.py
+|           
++---batch
+|   |   admin.py
+|   |   apps.py
+|   |   models.py
+|   |   serializers.py
+|   |   tests.py
+|   |   urls.py
+|   |   views.py
+|   |   __init__.py
+|   |   
+|   \---migrations
+|           0001_initial.py
+|           0002_initial.py
+|           __init__.py
+|           
++---blockchain_client
+|       exceptions.py
+|       models.py
+|       services.py
+|       utils.py
+|       __init__.py
+|       
++---core_backend
+|       asgi.py
+|       settings.py
+|       urls.py
+|       wsgi.py
+|       __init__.py
+|       
++---labfiles
+|   |   admin.py
+|   |   apps.py
+|   |   models.py
+|   |   serializers.py
+|   |   tests.py
+|   |   urls.py
+|   |   views.py
+|   |   __init__.py
+|   |   
+|   \---migrations
+|           0001_initial.py
+|           __init__.py
+|           
++---laboratory
+|   |   admin.py
+|   |   apps.py
+|   |   models.py
+|   |   permissions.py
+|   |   serializers.py
+|   |   tests.py
+|   |   urls.py
+|   |   views.py
+|   |   __init__.py
+|   |   
+|   \---migrations
+|           0001_initial.py
+|           __init__.py
+|           
+\---product
+    |   admin.py
+    |   apps.py
+    |   models.py
+    |   permissions.py
+    |   serializers.py
+    |   tests.py
+    |   urls.py
+    |   views.py
+    |   __init__.py
+    |   
+    \---migrations
+            0001_initial.py
+            __init__.py
+            
+
+```
+
+## 📊 RESUMEN DE ARCHIVOS
+
+### JSON (1 archivos)
+- `estructura_proyecto.json`
+
+### PYTHON (64 archivos)
+- `blockchain_client/__init__.py`
+- `product/migrations/__init__.py`
+- `batch/migrations/__init__.py`
+- `authentication/migrations/__init__.py`
+- `batch/__init__.py`
+- `laboratory/migrations/__init__.py`
+- `product/__init__.py`
+- `laboratory/__init__.py`
+- `labfiles/__init__.py`
+- `labfiles/migrations/__init__.py`
+- `core_backend/__init__.py`
+- `authentication/__init__.py`
+- `authentication/migrations/0001_initial.py`
+- `batch/migrations/0001_initial.py`
+- `laboratory/migrations/0001_initial.py`
+- `labfiles/migrations/0001_initial.py`
+- `product/migrations/0001_initial.py`
+- `batch/migrations/0002_initial.py`
+- `labfiles/admin.py`
+- `laboratory/admin.py`
+- `batch/admin.py`
+- `authentication/admin.py`
+- `product/admin.py`
+- `laboratory/apps.py`
+- `labfiles/apps.py`
+- `batch/apps.py`
+- `authentication/apps.py`
+- `product/apps.py`
+- `core_backend/asgi.py`
+- `blockchain_client/exceptions.py`
+- `manage.py`
+- `authentication/models.py`
+- `laboratory/models.py`
+- `product/models.py`
+- `labfiles/models.py`
+- `blockchain_client/models.py`
+- `batch/models.py`
+- `product/permissions.py`
+- `laboratory/permissions.py`
+- `laboratory/serializers.py`
+- `batch/serializers.py`
+- `labfiles/serializers.py`
+- `authentication/serializers.py`
+- `product/serializers.py`
+- `blockchain_client/services.py`
+- `core_backend/settings.py`
+- `labfiles/tests.py`
+- `batch/tests.py`
+- `product/tests.py`
+- `laboratory/tests.py`
+- `authentication/tests.py`
+- `authentication/urls.py`
+- `product/urls.py`
+- `core_backend/urls.py`
+- `labfiles/urls.py`
+- `laboratory/urls.py`
+- `batch/urls.py`
+- `blockchain_client/utils.py`
+- `product/views.py`
+- `laboratory/views.py`
+- `labfiles/views.py`
+- `batch/views.py`
+- `authentication/views.py`
+- `core_backend/wsgi.py`
+
+### TEXT (2 archivos)
+- `.gitignore`
+- `requirements.txt`
+
+
+## 📄 CONTENIDO DE ARCHIVOS
+
+### 📄 `.gitignore`
+
+```text
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+.env
+
+# VS Code
+.vscode/
+
+# Environments
+env/
+venv/
+ENV/
+venv.bak/
+*.env
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+```
+
+---
+
+### 📄 `authentication/__init__.py`
+
+```python
+
+```
+
+---
+
+### 📄 `authentication/admin.py`
+
+```python
+from django.contrib import admin
+
+# Register your models here.
+
+```
+
+---
+
+### 📄 `authentication/apps.py`
+
+```python
+from django.apps import AppConfig
+
+
+class AuthenticationConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'authentication'
+
+```
+
+---
+
+### 📄 `authentication/migrations/__init__.py`
+
+```python
+
+```
+
+---
+
+### 📄 `authentication/migrations/0001_initial.py`
+
+```python
+# Generated by Django 4.2.23 on 2025-06-25 05:29
+
+import django.contrib.auth.models
+import django.contrib.auth.validators
+from django.db import migrations, models
+import django.utils.timezone
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        ('auth', '0012_alter_user_first_name_max_length'),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='CustomUser',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('password', models.CharField(max_length=128, verbose_name='password')),
+                ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
+                ('is_superuser', models.BooleanField(default=False, help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status')),
+                ('username', models.CharField(error_messages={'unique': 'A user with that username already exists.'}, help_text='Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.', max_length=150, unique=True, validators=[django.contrib.auth.validators.UnicodeUsernameValidator()], verbose_name='username')),
+                ('first_name', models.CharField(blank=True, max_length=150, verbose_name='first name')),
+                ('last_name', models.CharField(blank=True, max_length=150, verbose_name='last name')),
+                ('is_staff', models.BooleanField(default=False, help_text='Designates whether the user can log into this admin site.', verbose_name='staff status')),
+                ('is_active', models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')),
+                ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),
+                ('role', models.CharField(choices=[('admin', 'Admin'), ('lab', 'Laboratorio'), ('dist', 'Distribuidor'), ('pharma', 'Farmacia')], max_length=10)),
+                ('email', models.EmailField(max_length=254, unique=True)),
+                ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.group', verbose_name='groups')),
+                ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.permission', verbose_name='user permissions')),
+            ],
+            options={
+                'verbose_name': 'user',
+                'verbose_name_plural': 'users',
+                'abstract': False,
+            },
+            managers=[
+                ('objects', django.contrib.auth.models.UserManager()),
+            ],
+        ),
+    ]
+
+```
+
+---
+
+### 📄 `authentication/models.py`
+
+```python
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
+class CustomUser(AbstractUser):
+    ROLE_CHOICES = [
+        ('admin', 'Admin'),
+        ('lab', 'Laboratorio'),
+        ('dist', 'Distribuidor'),
+        ('pharma', 'Farmacia'),
+    ]
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES)
+    email = models.EmailField(unique=True)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
+    def __str__(self):
+        return self.email
+
+```
+
+---
+
+### 📄 `authentication/serializers.py`
+
+```python
+from rest_framework import serializers
+from .models import CustomUser
+from django.contrib.auth import authenticate
+
+class RegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('id', 'username', 'email', 'password', 'role')
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        user = CustomUser.objects.create_user(**validated_data)
+        return user
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField()
+
+    def validate(self, data):
+        user = authenticate(**data)
+        if not user:
+            raise serializers.ValidationError("Credenciales inválidas")
+        return user
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('id', 'username', 'email', 'role')
+
+```
+
+---
+
+### 📄 `authentication/tests.py`
+
+```python
+from django.test import TestCase
+
+# Create your tests here.
+
+```
+
+---
+
+### 📄 `authentication/urls.py`
+
+```python
+from django.urls import path
+from .views import RegisterView, LoginView, MeView
+
+urlpatterns = [
+    path('register', RegisterView.as_view()),
+    path('login', LoginView.as_view()),
+    path('me', MeView.as_view()),
+]
+
+```
+
+---
+
+### 📄 `authentication/views.py`
+
+```python
+from rest_framework import generics, permissions
+from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
+from .serializers import RegisterSerializer, LoginSerializer, UserSerializer
+
+class RegisterView(generics.CreateAPIView):
+    serializer_class = RegisterSerializer
+
+class LoginView(generics.GenericAPIView):
+    serializer_class = LoginSerializer
+
+    def post(self, request):
+        user = self.get_serializer(data=request.data)
+        user.is_valid(raise_exception=True)
+        user = user.validated_data
+        refresh = RefreshToken.for_user(user)
+        return Response({
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+        })
+
+class MeView(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        return self.request.user
+
+```
+
+---
+
+### 📄 `batch/__init__.py`
+
+```python
+
+```
+
+---
+
+### 📄 `batch/admin.py`
+
+```python
+from django.contrib import admin
+
+# Register your models here.
+
+```
+
+---
+
+### 📄 `batch/apps.py`
+
+```python
+from django.apps import AppConfig
+
+
+class BatchConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'batch'
+
+```
+
+---
+
+### 📄 `batch/migrations/__init__.py`
+
+```python
+
+```
+
+---
+
+### 📄 `batch/migrations/0001_initial.py`
+
+```python
+# Generated by Django 4.2.23 on 2025-06-25 05:29
+
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Batch',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('origin', models.CharField(max_length=255)),
+                ('destination', models.CharField(max_length=255)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('qr_code', models.ImageField(blank=True, null=True, upload_to='qr_codes/')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Series',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('serie_code', models.CharField(max_length=100, unique=True)),
+                ('batch', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='series', to='batch.batch')),
+            ],
+        ),
+    ]
+
+```
+
+---
+
+### 📄 `batch/migrations/0002_initial.py`
+
+```python
+# Generated by Django 4.2.23 on 2025-06-25 05:29
+
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        ('laboratory', '0001_initial'),
+        ('batch', '0001_initial'),
+        ('product', '0001_initial'),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name='series',
+            name='product',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='product.product'),
+        ),
+        migrations.AddField(
+            model_name='batch',
+            name='laboratory',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='batches', to='laboratory.laboratory'),
+        ),
+    ]
+
+```
+
+---
+
+### 📄 `batch/models.py`
+
+```python
+from django.db import models
+from laboratory.models import Laboratory
+from product.models import Product
+
+class Batch(models.Model):
+    laboratory = models.ForeignKey(Laboratory, on_delete=models.CASCADE, related_name='batches')
+    origin = models.CharField(max_length=255)
+    destination = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    qr_code = models.ImageField(upload_to='qr_codes/', null=True, blank=True)
+
+    def __str__(self):
+        return f"Lote #{self.id} - {self.origin} → {self.destination}"
+
+class Series(models.Model):
+    batch = models.ForeignKey(Batch, on_delete=models.CASCADE, related_name='series')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    serie_code = models.CharField(max_length=100, unique=True)
+
+
+
+```
+
+---
+
+### 📄 `batch/serializers.py`
+
+```python
+from rest_framework import serializers
+from .models import Batch, Series
+from product.models import ProductUnit, Product
+from product.serializers import ProductSerializer
+from blockchain_client.services import register_event
+from blockchain_client.models import BlockchainEvent, Responsible, Geolocation
+
+
+class SeriesSerializer(serializers.ModelSerializer):
+    product = ProductSerializer()
+
+    class Meta:
+        model = Series
+        fields = ['id', 'serie_code', 'product']
+
+
+class BatchSerializer(serializers.ModelSerializer):
+    series = serializers.ListField(
+        child=serializers.CharField(), write_only=True, required=False
+    )
+
+    class Meta:
+        model = Batch
+        fields = ['id', 'origin', 'destination', 'qr_code', 'created_at', 'series']
+
+    def create(self, validated_data):
+        request = self.context.get('request')
+        lab = request.user.laboratory
+        series_data = validated_data.pop('series', [])
+        batch = Batch.objects.create(**validated_data)
+
+        for serial in series_data:
+            try:
+                product_unit = ProductUnit.objects.get(serial_number=serial)
+                Series.objects.create(
+                    batch=batch,
+                    serie_code=serial,
+                    product=product_unit.product
+                )
+                product_unit.batch = batch
+                product_unit.save()
+
+                # Crear evento shipment
+                event = BlockchainEvent(
+                    labId=str(lab.id),
+                    eventType="shipment",
+                    productSerial=serial,
+                    batchId=str(batch.id),
+                    origin=batch.origin,
+                    destination=batch.destination,
+                    currentLocation=batch.destination,
+                    responsible=Responsible(
+                        name=request.user.username,
+                        role="lab",
+                        entity=lab.business_name,
+                        documentId=lab.dni_representante
+                    ),
+                    notes=f"Unidad serial {serial} agregada al lote #{batch.id}",
+                    digitalSignature="FIRMA_AUTO",
+                    deviceInfo="Sistema Django",
+                    geolocation=Geolocation(
+                        ip=self.get_client_ip(request),
+                        lat=-12.0464,
+                        lng=-77.0428
+                    )
+                )
+                register_event(event)
+
+            except ProductUnit.DoesNotExist:
+                raise serializers.ValidationError(f"El número de serie '{serial}' no existe en ProductUnit.")
+            except Exception as e:
+                print(f"⚠️ Error al registrar evento shipment de {serial}: {e}")
+
+        return batch
+
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            return x_forwarded_for.split(',')[0]
+        return request.META.get('REMOTE_ADDR', '127.0.0.1')
+    
+
+class BatchDetailSerializer(serializers.ModelSerializer):
+    series = SeriesSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Batch
+        fields = ['id', 'origin', 'destination', 'qr_code', 'created_at', 'series']
+
+```
+
+---
+
+### 📄 `batch/tests.py`
+
+```python
+from django.test import TestCase
+
+# Create your tests here.
+
+```
+
+---
+
+### 📄 `batch/urls.py`
+
+```python
+from django.urls import path
+from .views import (
+    CreateBatchView,
+    ListBatchView,
+    RetrieveBatchView,
+    RetrieveBatchBySerieView,
+    UpdateBatchView,
+    BatchDetailView, 
+    BatchBySerieView, 
+    BatchUpdateView
+)
+
+urlpatterns = [
+    path('', CreateBatchView.as_view(), name='create_batch'),  # POST
+    path('all/', ListBatchView.as_view(), name='list_batches'),  # GET
+    path('<int:pk>/', RetrieveBatchView.as_view(), name='batch_detail'),  # GET by id
+    path('series/<str:serie>/', RetrieveBatchBySerieView.as_view(), name='batch_by_serie'),  # GET by serie
+    path('<int:pk>/edit/', UpdateBatchView.as_view(), name='update_batch'),  # PUT
+
+    path('<int:id>/', BatchDetailView.as_view(), name='batch-detail'),
+    path('by-serie/<str:serie_code>/', BatchBySerieView.as_view(), name='batch-by-serie'),
+    path('<int:id>/update/', BatchUpdateView.as_view(), name='batch-update'),
+]
+
+```
+
+---
+
+### 📄 `batch/views.py`
+
+```python
+from rest_framework import generics, permissions
+from .models import Batch, Series
+from .serializers import BatchSerializer
+from laboratory.models import Laboratory
+from .serializers import BatchDetailSerializer
+from django.shortcuts import get_object_or_404
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+class CreateBatchView(generics.CreateAPIView):
+    serializer_class = BatchSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        lab = self.request.user.laboratory
+        serializer.save(laboratory=lab)
+
+class ListBatchView(generics.ListAPIView):
+    serializer_class = BatchSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Batch.objects.filter(laboratory__email=self.request.user.email)
+
+class RetrieveBatchView(generics.RetrieveAPIView):
+    queryset = Batch.objects.all()
+    serializer_class = BatchDetailSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class RetrieveBatchBySerieView(generics.RetrieveAPIView):
+    serializer_class = BatchSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        serie_code = self.kwargs['serie']
+        return Batch.objects.get(series__serie_code=serie_code)
+
+class UpdateBatchView(generics.UpdateAPIView):
+    queryset = Batch.objects.all()
+    serializer_class = BatchSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class BatchDetailView(generics.RetrieveAPIView):
+    queryset = Batch.objects.all()
+    serializer_class = BatchDetailSerializer
+    lookup_field = 'id'
+
+class BatchBySerieView(APIView):
+    def get(self, request, serie_code):
+        serie = get_object_or_404(Series, serie_code=serie_code)
+        batch = serie.batch
+        serializer = BatchDetailSerializer(batch)
+        return Response(serializer.data)
+
+class BatchUpdateView(generics.UpdateAPIView):
+    queryset = Batch.objects.all()
+    serializer_class = BatchDetailSerializer
+    lookup_field = 'id'
+```
+
+---
+
+### 📄 `blockchain_client/__init__.py`
+
+```python
+
+```
+
+---
+
+### 📄 `blockchain_client/exceptions.py`
+
+```python
+class BlockchainAPIError(Exception):
+    def __init__(self, message, response=None):
+        super().__init__(message)
+        self.status_code = response.status_code if response else None
+        self.response_text = response.text if response else None
+
+
+
+
+```
+
+---
+
+### 📄 `blockchain_client/models.py`
+
+```python
+from dataclasses import dataclass
+from typing import Optional, Dict, List
+
+@dataclass
+class Responsible:
+    name: str
+    role: str
+    entity: str
+    documentId: str
+
+@dataclass
+class Geolocation:
+    ip: str
+    lat: float
+    lng: float
+
+@dataclass
+class BlockchainEvent:
+    labId: str
+    eventType: str
+    productSerial: str
+    batchId: str
+    origin: str
+    destination: str
+    currentLocation: str
+    responsible: Responsible
+    notes: str
+    digitalSignature: str
+    deviceInfo: str
+    geolocation: Geolocation
+
+@dataclass
+class GenesisBlock:
+    labId: str
+    business_name: str
+    ruc: str
+    representante_legal: str
+    dni_representante: str
+
+```
+
+---
+
+### 📄 `blockchain_client/services.py`
+
+```python
+import requests
+from .models import BlockchainEvent, GenesisBlock
+from .exceptions import BlockchainAPIError
+
+BASE_URL = "https://blockchain-connection-production.up.railway.app/api"  
+
+def create_genesis_block(data: GenesisBlock):
+    response = requests.post(f"{BASE_URL}/genesis", json=data.__dict__)
+    if not response.ok:
+        raise BlockchainAPIError("Error creando bloque génesis", response)
+    return response.json()
+
+def register_event(event: BlockchainEvent):
+    payload = event.__dict__.copy()
+    payload["responsible"] = event.responsible.__dict__
+    payload["geolocation"] = event.geolocation.__dict__
+
+    response = requests.post(f"{BASE_URL}/events", json=payload)
+    if response.status_code != 200:
+        raise BlockchainAPIError("Error registrando evento", response)
+    return response.json()
+
+def get_blockchain_by_lab(lab_id: str):
+    response = requests.get(f"{BASE_URL}/blocks/{lab_id}")
+    if response.status_code != 200:
+        raise BlockchainAPIError("Error obteniendo blockchain por laboratorio", response)
+    return response.json()
+
+def trace_product(lab_id: str, product_serial: str):
+    response = requests.get(f"{BASE_URL}/trace/{lab_id}/{product_serial}")
+    if not response.ok:
+        raise BlockchainAPIError("Error trazando producto", response)
+    return response  
+
+
+```
+
+---
+
+### 📄 `blockchain_client/utils.py`
+
+```python
+def validar_event_type(event_type: str):
+    valid_types = {"manufacture", "shipment", "reception", "sale", "return", "query"}
+    if event_type not in valid_types:
+        raise ValueError(f"Tipo de evento no permitido: {event_type}")
+
+
+```
+
+---
+
+### 📄 `core_backend/__init__.py`
+
+```python
+
+```
+
+---
+
+### 📄 `core_backend/asgi.py`
+
+```python
+"""
+ASGI config for core_backend project.
+
+It exposes the ASGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/5.2/howto/deployment/asgi/
+"""
+
+import os
+
+from django.core.asgi import get_asgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core_backend.settings')
+
+application = get_asgi_application()
+
+```
+
+---
+
+### 📄 `core_backend/settings.py`
+
+```python
+
+from pathlib import Path
+from datetime import timedelta
+import os
+
+
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+SECRET_KEY = 'django-insecure-o77v2-d4gqa4kv^#%old3a5*s9ob0lma+8^&#z8$s72+^q4x8z'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = []
+
+
+AUTH_USER_MODEL = 'authentication.CustomUser'
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=7), 
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'rest_framework',
+    'authentication',
+    'laboratory',
+    'product',
+    'batch',
+    'labfiles',
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ROOT_URLCONF = 'core_backend.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+WSGI_APPLICATION = 'core_backend.wsgi.application'
+
+
+# Database
+# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'pharma_db',
+        'USER': 'root',
+        'PASSWORD': 'P4ssword',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+
+
+# Password validation
+# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+
+# Internationalization
+# https://docs.djangoproject.com/en/5.2/topics/i18n/
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_TZ = True
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.2/howto/static-files/
+
+STATIC_URL = 'static/'
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+```
+
+---
+
+### 📄 `core_backend/urls.py`
+
+```python
+from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/v1/auth/', include('authentication.urls')),
+
+    path('api/v1/laboratories/', include('laboratory.urls')),
+
+    path('api/v1/products/', include('product.urls')),
+
+    path('api/v1/batches/', include('batch.urls')),
+
+    path('api/v1/laboratories-files/', include('labfiles.urls')),
+
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+```
+
+---
+
+### 📄 `core_backend/wsgi.py`
+
+```python
+"""
+WSGI config for core_backend project.
+
+It exposes the WSGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/5.2/howto/deployment/wsgi/
+"""
+
+import os
+
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core_backend.settings')
+
+application = get_wsgi_application()
+
+```
+
+---
+
+### 📄 `estructura_proyecto.json`
+
+```json
+[
     {
         "path":  ".gitignore",
         "content":  {
@@ -1896,3 +3051,865 @@
                     }
     }
 ]
+
+```
+
+---
+
+### 📄 `labfiles/__init__.py`
+
+```python
+
+```
+
+---
+
+### 📄 `labfiles/admin.py`
+
+```python
+from django.contrib import admin
+
+# Register your models here.
+
+```
+
+---
+
+### 📄 `labfiles/apps.py`
+
+```python
+from django.apps import AppConfig
+
+
+class LabfilesConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'labfiles'
+
+```
+
+---
+
+### 📄 `labfiles/migrations/__init__.py`
+
+```python
+
+```
+
+---
+
+### 📄 `labfiles/migrations/0001_initial.py`
+
+```python
+# Generated by Django 4.2.23 on 2025-06-25 05:29
+
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        ('laboratory', '0001_initial'),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='LaboratoryFile',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('file', models.FileField(upload_to='lab_documents/')),
+                ('name', models.CharField(blank=True, max_length=255)),
+                ('uploaded_at', models.DateTimeField(auto_now_add=True)),
+                ('laboratory', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='files', to='laboratory.laboratory')),
+            ],
+        ),
+    ]
+
+```
+
+---
+
+### 📄 `labfiles/models.py`
+
+```python
+from django.db import models
+from laboratory.models import Laboratory  # Asegúrate que esta ruta sea correcta
+
+class LaboratoryFile(models.Model):
+    laboratory = models.ForeignKey(Laboratory, related_name='files', on_delete=models.CASCADE)
+    file = models.FileField(upload_to='lab_documents/')
+    name = models.CharField(max_length=255, blank=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name or self.file.name
+
+```
+
+---
+
+### 📄 `labfiles/serializers.py`
+
+```python
+from rest_framework import serializers
+from .models import LaboratoryFile
+
+class LaboratoryFileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LaboratoryFile
+        fields = ['id', 'name', 'file', 'uploaded_at']
+
+```
+
+---
+
+### 📄 `labfiles/tests.py`
+
+```python
+from django.test import TestCase
+
+# Create your tests here.
+
+```
+
+---
+
+### 📄 `labfiles/urls.py`
+
+```python
+from django.urls import path
+from .views import (
+    LaboratoryFileUploadView,
+    LaboratoryFileListView,
+    LaboratoryFileDeleteView,
+)
+
+urlpatterns = [
+    path('<int:laboratory_id>/files/', LaboratoryFileUploadView.as_view(), name='upload_files'),
+    path('<int:laboratory_id>/files/list/', LaboratoryFileListView.as_view(), name='list_files'),
+    path('files/<int:file_id>/delete/', LaboratoryFileDeleteView.as_view(), name='delete_file'),
+]
+
+```
+
+---
+
+### 📄 `labfiles/views.py`
+
+```python
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.parsers import MultiPartParser
+from rest_framework import status
+from django.shortcuts import get_object_or_404
+
+from .models import LaboratoryFile
+from .serializers import LaboratoryFileSerializer
+from laboratory.models import Laboratory
+
+class LaboratoryFileUploadView(APIView):
+    parser_classes = [MultiPartParser]
+
+    def post(self, request, laboratory_id):
+        lab = get_object_or_404(Laboratory, id=laboratory_id)
+        files = request.FILES.getlist('files')
+        uploaded = []
+
+        for f in files:
+            doc = LaboratoryFile.objects.create(laboratory=lab, file=f, name=f.name)
+            uploaded.append(doc)
+
+        serializer = LaboratoryFileSerializer(uploaded, many=True)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+class LaboratoryFileListView(APIView):
+    def get(self, request, laboratory_id):
+        lab = get_object_or_404(Laboratory, id=laboratory_id)
+        files = lab.files.all()
+        serializer = LaboratoryFileSerializer(files, many=True)
+        return Response(serializer.data)
+
+class LaboratoryFileDeleteView(APIView):
+    def delete(self, request, file_id):
+        file = get_object_or_404(LaboratoryFile, id=file_id)
+        file.file.delete(save=False)  # elimina físicamente
+        file.delete()
+        return Response({"message": "Archivo eliminado"}, status=status.HTTP_204_NO_CONTENT)
+
+```
+
+---
+
+### 📄 `laboratory/__init__.py`
+
+```python
+
+```
+
+---
+
+### 📄 `laboratory/admin.py`
+
+```python
+from django.contrib import admin
+
+# Register your models here.
+
+```
+
+---
+
+### 📄 `laboratory/apps.py`
+
+```python
+from django.apps import AppConfig
+
+
+class LaboratoryConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'laboratory'
+
+```
+
+---
+
+### 📄 `laboratory/migrations/__init__.py`
+
+```python
+
+```
+
+---
+
+### 📄 `laboratory/migrations/0001_initial.py`
+
+```python
+# Generated by Django 4.2.23 on 2025-06-25 05:29
+
+from django.conf import settings
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Laboratory',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('business_name', models.CharField(max_length=100)),
+                ('nombre_comercial', models.CharField(max_length=100)),
+                ('ruc', models.CharField(max_length=20)),
+                ('address', models.TextField()),
+                ('email', models.EmailField(max_length=254)),
+                ('phone', models.CharField(max_length=20)),
+                ('representante_legal', models.CharField(max_length=100)),
+                ('dni_representante', models.CharField(max_length=20)),
+                ('tipo_productos', models.CharField(max_length=100)),
+                ('mercado_objetivo', models.CharField(max_length=100)),
+                ('status', models.CharField(max_length=20)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='laboratory', to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+    ]
+
+```
+
+---
+
+### 📄 `laboratory/models.py`
+
+```python
+from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+class Laboratory(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="laboratory")
+    business_name = models.CharField(max_length=100)
+    nombre_comercial = models.CharField(max_length=100)
+    ruc = models.CharField(max_length=20)
+    address = models.TextField()
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    representante_legal = models.CharField(max_length=100)
+    dni_representante = models.CharField(max_length=20)
+    tipo_productos = models.CharField(max_length=100)
+    mercado_objetivo = models.CharField(max_length=100)
+    status = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.business_name
+
+```
+
+---
+
+### 📄 `laboratory/permissions.py`
+
+```python
+from rest_framework.permissions import BasePermission
+
+class IsAdmin(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and request.user.role == 'admin'
+
+
+```
+
+---
+
+### 📄 `laboratory/serializers.py`
+
+```python
+from rest_framework import serializers
+from .models import Laboratory
+
+class LaboratorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Laboratory
+        fields = '__all__'
+
+class LaboratoryStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Laboratory
+        fields = ['status']
+
+```
+
+---
+
+### 📄 `laboratory/tests.py`
+
+```python
+from django.test import TestCase
+
+# Create your tests here.
+
+```
+
+---
+
+### 📄 `laboratory/urls.py`
+
+```python
+from django.urls import path
+from .views import (
+    CreateLaboratoryView,
+    ListLaboratoriesView,
+    RetrieveLaboratoryView,
+    UpdateLaboratoryView,
+    UpdateLaboratoryStatusView,
+)
+
+urlpatterns = [
+    path('', CreateLaboratoryView.as_view(), name='create_laboratory'),  # POST
+    path('all/', ListLaboratoriesView.as_view(), name='list_laboratories'),  # GET
+    path('<int:pk>/', RetrieveLaboratoryView.as_view(), name='get_laboratory'),  # GET by id
+    path('<int:pk>/status/', UpdateLaboratoryStatusView.as_view(), name='update_status'),  # PUT status
+    path('<int:pk>/edit/', UpdateLaboratoryView.as_view(), name='update_laboratory'),  # PUT general
+
+]
+
+
+```
+
+---
+
+### 📄 `laboratory/views.py`
+
+```python
+from rest_framework import generics, permissions
+from .models import Laboratory
+from .serializers import LaboratorySerializer, LaboratoryStatusSerializer
+from .permissions import IsAdmin
+from blockchain_client.services import create_genesis_block
+from blockchain_client.models import GenesisBlock
+
+# POST /api/v1/laboratories
+class CreateLaboratoryView(generics.CreateAPIView):
+    serializer_class = LaboratorySerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        laboratory = serializer.save(user=self.request.user)
+
+        # Crear bloque génesis después de guardar el laboratorio
+        genesis_data = GenesisBlock(
+            labId=str(laboratory.id),
+            business_name=laboratory.business_name,
+            ruc=laboratory.ruc,
+            representante_legal=laboratory.representante_legal,
+            dni_representante=laboratory.dni_representante
+        )
+        try:
+            create_genesis_block(genesis_data)
+        except Exception as e:
+            print(f"Error creando bloque génesis: {e}")
+            if hasattr(e, 'response') and e.response is not None:
+                print("Detalle del error:", e.response.text)
+
+# GET /api/v1/laboratories
+class ListLaboratoriesView(generics.ListAPIView):
+    queryset = Laboratory.objects.all()
+    serializer_class = LaboratorySerializer
+    permission_classes = [permissions.IsAuthenticated, IsAdmin]
+
+# GET /api/v1/laboratories/{id}
+class RetrieveLaboratoryView(generics.RetrieveAPIView):
+    queryset = Laboratory.objects.all()
+    serializer_class = LaboratorySerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+# PUT /api/v1/laboratories/{id}
+class UpdateLaboratoryView(generics.UpdateAPIView):
+    queryset = Laboratory.objects.all()
+    serializer_class = LaboratorySerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+# PUT /api/v1/laboratories/{id}/status
+class UpdateLaboratoryStatusView(generics.UpdateAPIView):
+    queryset = Laboratory.objects.all()
+    serializer_class = LaboratoryStatusSerializer
+    permission_classes = [permissions.IsAuthenticated, IsAdmin]
+    lookup_field = 'pk'
+
+
+
+```
+
+---
+
+### 📄 `manage.py`
+
+```python
+#!/usr/bin/env python
+"""Django's command-line utility for administrative tasks."""
+import os
+import sys
+
+
+def main():
+    """Run administrative tasks."""
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core_backend.settings')
+    try:
+        from django.core.management import execute_from_command_line
+    except ImportError as exc:
+        raise ImportError(
+            "Couldn't import Django. Are you sure it's installed and "
+            "available on your PYTHONPATH environment variable? Did you "
+            "forget to activate a virtual environment?"
+        ) from exc
+    execute_from_command_line(sys.argv)
+
+
+if __name__ == '__main__':
+    main()
+
+```
+
+---
+
+### 📄 `product/__init__.py`
+
+```python
+
+```
+
+---
+
+### 📄 `product/admin.py`
+
+```python
+from django.contrib import admin
+
+# Register your models here.
+
+```
+
+---
+
+### 📄 `product/apps.py`
+
+```python
+from django.apps import AppConfig
+
+
+class ProductConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'product'
+
+```
+
+---
+
+### 📄 `product/migrations/__init__.py`
+
+```python
+
+```
+
+---
+
+### 📄 `product/migrations/0001_initial.py`
+
+```python
+# Generated by Django 4.2.23 on 2025-06-25 05:29
+
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        ('laboratory', '0001_initial'),
+        ('batch', '0001_initial'),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Product',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('name', models.CharField(max_length=100)),
+                ('description', models.TextField()),
+                ('registration_number', models.CharField(max_length=100)),
+                ('composition', models.CharField(max_length=255)),
+                ('presentation', models.CharField(max_length=100)),
+                ('manufacturer', models.CharField(max_length=255)),
+                ('country_of_origin', models.CharField(max_length=100)),
+                ('storage_conditions', models.TextField()),
+                ('packaging', models.CharField(max_length=100)),
+                ('expiration_date', models.DateField()),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('laboratory', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='products', to='laboratory.laboratory')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='ProductUnit',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('serial_number', models.CharField(max_length=100, unique=True)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('batch', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='product_units', to='batch.batch')),
+                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='units', to='product.product')),
+            ],
+        ),
+    ]
+
+```
+
+---
+
+### 📄 `product/models.py`
+
+```python
+from django.db import models
+from laboratory.models import Laboratory
+from django.apps import apps
+
+class Product(models.Model):
+    laboratory = models.ForeignKey(Laboratory, on_delete=models.CASCADE, related_name='products')
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    registration_number = models.CharField(max_length=100)
+    composition = models.CharField(max_length=255)
+    presentation = models.CharField(max_length=100)
+    manufacturer = models.CharField(max_length=255)
+    country_of_origin = models.CharField(max_length=100)
+    storage_conditions = models.TextField()
+    packaging = models.CharField(max_length=100)
+    expiration_date = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+
+class ProductUnit(models.Model):
+    serial_number = models.CharField(max_length=100, unique=True)
+    product = models.ForeignKey('product.Product', on_delete=models.CASCADE, related_name='units')
+    batch = models.ForeignKey('batch.Batch', on_delete=models.SET_NULL, null=True, blank=True, related_name='product_units')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.serial_number} - {self.product.name}"
+
+
+
+
+```
+
+---
+
+### 📄 `product/permissions.py`
+
+```python
+from rest_framework import permissions
+
+class IsLaboratoryOwner(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return obj.laboratory.user == request.user
+
+```
+
+---
+
+### 📄 `product/serializers.py`
+
+```python
+from rest_framework import serializers
+from .models import Product, ProductUnit
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = '__all__'
+        read_only_fields = ['laboratory', 'created_at']
+
+class ProductUnitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductUnit
+        fields = '__all__'
+
+
+```
+
+---
+
+### 📄 `product/tests.py`
+
+```python
+from django.test import TestCase
+
+# Create your tests here.
+
+```
+
+---
+
+### 📄 `product/urls.py`
+
+```python
+from django.urls import path
+
+from .views import (
+    CreateProductView, 
+    ListProductView, 
+    RetrieveProductView, 
+    UpdateProductView, 
+    ProductUnitListView, 
+    ProductUnitCreateView, 
+    TraceabilityBySeriesView,
+)
+
+urlpatterns = [
+    path('', CreateProductView.as_view(), name='create_product'),           # POST
+    path('all/', ListProductView.as_view(), name='list_products'),          # GET
+    path('<int:pk>/', RetrieveProductView.as_view(), name='get_product'),   # GET
+    path('<int:pk>/edit/', UpdateProductView.as_view(), name='edit_product'),# PUT
+
+    path('units/', ProductUnitListView.as_view(), name='unit-list'),
+    path('units/create/', ProductUnitCreateView.as_view(), name='unit-create'),
+
+    path('product-units/', ProductUnitListView.as_view(), name='list-product-units'),
+    path('product-units/create/', ProductUnitCreateView.as_view(), name='create-product-unit'),
+
+    path('traceability/<str:serie>/', TraceabilityBySeriesView.as_view(), name='traceability-by-series'),
+    
+
+]
+
+```
+
+---
+
+### 📄 `product/views.py`
+
+```python
+from rest_framework import generics, permissions
+from .models import Product, ProductUnit
+from .serializers import ProductSerializer, ProductUnitSerializer
+from .permissions import IsLaboratoryOwner
+from laboratory.models import Laboratory
+from blockchain_client.services import register_event, trace_product
+from blockchain_client.models import BlockchainEvent, Responsible, Geolocation
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from batch.models import Series
+
+
+# POST /api/v1/products
+class CreateProductView(generics.CreateAPIView):
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        lab = Laboratory.objects.get(user=self.request.user)
+        serializer.save(laboratory=lab)
+
+# GET /api/v1/products
+class ListProductView(generics.ListAPIView):
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        lab = Laboratory.objects.get(user=self.request.user)
+        return lab.products.all()
+
+# GET /api/v1/products/{id}
+class RetrieveProductView(generics.RetrieveAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticated, IsLaboratoryOwner]
+
+# PUT /api/v1/products/{id}
+class UpdateProductView(generics.UpdateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticated, IsLaboratoryOwner]
+
+
+class ProductUnitCreateView(generics.CreateAPIView):
+    queryset = ProductUnit.objects.all()
+    serializer_class = ProductUnitSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        product_unit = serializer.save()
+
+        try:
+            lab = Laboratory.objects.get(user=self.request.user)
+
+            event = BlockchainEvent(
+                labId=str(lab.id),
+                eventType="manufacture",
+                productSerial=product_unit.serial_number,
+                batchId="SIN_BATCH",  # Si se vincula luego a un lote, actualizar en otro evento
+                origin="Planta de producción",
+                destination="Almacén central",
+                currentLocation="Almacén central",
+                responsible=Responsible(
+                    name=self.request.user.username,
+                    role="lab",
+                    entity=lab.business_name,
+                    documentId=lab.dni_representante
+                ),
+                notes=f"Unidad serial {product_unit.serial_number} fabricada.",
+                digitalSignature="FIRMA_AUTO",  # Puedes reemplazar por hash real más adelante
+                deviceInfo="Sistema Django",
+                geolocation=Geolocation(
+                    ip=self.get_client_ip(),
+                    lat=10, 
+                    lng=10
+                )
+            )
+
+            register_event(event)
+
+        except Exception as e:
+            print(f"Error al registrar evento blockchain: {e}")
+
+
+    def get_client_ip(self):
+        x_forwarded_for = self.request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            return x_forwarded_for.split(',')[0]
+        return self.request.META.get('REMOTE_ADDR', '127.0.0.1')
+
+
+class ProductUnitListView(generics.ListAPIView):
+    queryset = ProductUnit.objects.all()
+    serializer_class = ProductUnitSerializer
+
+
+class TraceabilityBySeriesView(APIView):
+    def get(self, request, serie):
+        try:
+            # Buscar la serie y el laboratorio asociado
+            serie_obj = Series.objects.select_related('batch__laboratory').get(serie_code=serie)
+            laboratorio = serie_obj.batch.laboratory
+
+            # Llamar a la blockchain
+            response = trace_product(str(laboratorio.id), serie)
+
+            return Response(response.json(), status=response.status_code)
+
+        except Series.DoesNotExist:
+            return Response({"error": "Serie no encontrada"}, status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as e:
+            return Response({"error": "Fallo al consultar la blockchain", "detalle": str(e)}, status=500)
+        
+
+
+
+```
+
+---
+
+### 📄 `requirements.txt`
+
+```text
+Django>=4.2,<5.0
+djangorestframework>=3.14
+mysqlclient>=2.2.0
+python-dotenv>=1.0.0
+gunicorn>=21.2.0
+djangorestframework-simplejwt>=5.2.2
+Pillow>=10.0.0
+tensorflow==2.19.0
+numpy==2.1.1
+
+
+
+
+```
+
+---
+
+## 🤖 INFORMACIÓN PARA IA
+
+### Contexto del Proyecto
+- **Nombre:** Pharma Traceability Backend
+- **Tipo:** Sistema de trazabilidad farmacéutica
+- **Propósito:** Backend para rastrear medicamentos en la cadena de suministro
+
+### Instrucciones para Modificaciones
+1. **Siempre especifica el archivo exacto** usando la ruta relativa mostrada arriba
+2. **Mantén la estructura existente** del proyecto
+3. **Considera las dependencias** entre archivos al hacer cambios
+4. **Respeta los patrones** de código existentes
+5. **Incluye manejo de errores** apropiado
+
+### Archivos Clave a Considerar
+- Archivos de configuración (package.json, requirements.txt, etc.)
+- Archivos de entrada principal (main.py, index.js, etc.)
+- Archivos de rutas/endpoints
+- Modelos de datos
+- Archivos de pruebas
+
+### Tecnologías Detectadas
+- json: 1 archivos
+- python: 64 archivos
+- text: 2 archivos
+
+
+---
+**Fin del documento**

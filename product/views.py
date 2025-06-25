@@ -9,6 +9,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from batch.models import Series
+from rest_framework.permissions import IsAuthenticated
+import hashlib
 
 
 # POST /api/v1/products
@@ -113,5 +115,77 @@ class TraceabilityBySeriesView(APIView):
         except Exception as e:
             return Response({"error": "Fallo al consultar la blockchain", "detalle": str(e)}, status=500)
         
+
+
+class RegisterBlockchainEventView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        data = request.data
+
+        # Validaciones mínimas
+        required_fields = ['productSerial', 'batchId', 'eventType', 'destination', 'deviceInfo', 'responsible', 'geolocation']
+        for field in required_fields:
+            if field not in data:
+                return Response({"error": f"Campo '{field}' requerido."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # 1. Recuperar laboratorio
+        try:
+            lab = user.laboratory
+        except Laboratory.DoesNotExist:
+            return Response({"error": "El usuario no tiene laboratorio asociado"}, status=400)
+
+        # 2. Trazar producto para obtener el último evento (origen)
+        try:
+            chain_response = trace_product(str(lab.id), data['productSerial'])
+            chain_data = chain_response.json()
+            events = chain_data.get('events', [])
+
+            if not isinstance(events, list):
+                return Response({"error": "El formato de respuesta de blockchain no es válido", "data": chain_data}, status=500)
+
+            last_event = events[-1] if events else None
+            origin = last_event['currentLocation'] if last_event else "Origen desconocido"
+        except Exception as e:
+            return Response({"error": f"Error al trazar producto: {str(e)}"}, status=500)
+
+        # 3. Construir objeto BlockchainEvent
+        responsible = Responsible(
+            name=data['responsible']['name'],
+            role=data['responsible']['role'],
+            entity=lab.business_name,
+            documentId=data['responsible']['documentId']
+        )
+
+        geolocation = Geolocation(
+            ip=data['geolocation']['ip'],
+            lat=data['geolocation'].get('lat', 0.0),
+            lng=data['geolocation'].get('lng', 0.0)
+        )
+
+        signature_string = f"{lab.id}{data['eventType']}{data['productSerial']}{data['destination']}"
+        digital_signature = hashlib.sha256(signature_string.encode()).hexdigest()
+
+        event = BlockchainEvent(
+            labId=str(lab.id),
+            eventType=data['eventType'],
+            productSerial=data['productSerial'],
+            batchId=data['batchId'],
+            origin=origin,
+            destination=data['destination'],
+            currentLocation=data['destination'],
+            responsible=responsible,
+            notes=data.get('notes', ''),
+            digitalSignature=digital_signature,
+            deviceInfo=data['deviceInfo'],
+            geolocation=geolocation
+        )
+
+        try:
+            result = register_event(event)
+            return Response({"success": True, "blockchain_response": result}, status=200)
+        except Exception as e:
+            return Response({"error": f"Error registrando evento en blockchain: {str(e)}"}, status=500)
 
 

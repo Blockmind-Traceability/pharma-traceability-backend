@@ -8,6 +8,7 @@ from .views import (
     ProductUnitListView, 
     ProductUnitCreateView, 
     TraceabilityBySeriesView,
+    RegisterBlockchainEventView,
 )
 
 urlpatterns = [
@@ -24,5 +25,8 @@ urlpatterns = [
 
     path('traceability/<str:serie>/', TraceabilityBySeriesView.as_view(), name='traceability-by-series'),
     
+    path('blockchain/events', RegisterBlockchainEventView.as_view(), name='register_blockchain_event'),
+
+
 
 ]
