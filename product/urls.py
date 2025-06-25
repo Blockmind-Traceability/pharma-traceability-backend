@@ -1,6 +1,13 @@
 from django.urls import path
+
 from .views import (
-    CreateProductView, ListProductView, RetrieveProductView, UpdateProductView, ProductUnitListView, ProductUnitCreateView
+    CreateProductView, 
+    ListProductView, 
+    RetrieveProductView, 
+    UpdateProductView, 
+    ProductUnitListView, 
+    ProductUnitCreateView, 
+    TraceabilityBySeriesView,
 )
 
 urlpatterns = [
@@ -14,4 +21,8 @@ urlpatterns = [
 
     path('product-units/', ProductUnitListView.as_view(), name='list-product-units'),
     path('product-units/create/', ProductUnitCreateView.as_view(), name='create-product-unit'),
+
+    path('traceability/<str:serie>/', TraceabilityBySeriesView.as_view(), name='traceability-by-series'),
+    
+
 ]

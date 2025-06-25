@@ -1,7 +1,9 @@
 ﻿# exportar_a_json.ps1
 
 $directorioBase = "C:\tesis\pharma-traceability-backend"
-$archivos = Get-ChildItem -Path $directorioBase -Recurse -File
+$archivos = Get-ChildItem -Path $directorioBase -Recurse -File | Where-Object {
+    $_.FullName -notmatch "\\env\\" -and $_.FullName -notmatch "\\.git\\"
+}
 $resultado = @()
 
 foreach ($archivo in $archivos) {

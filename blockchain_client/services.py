@@ -28,6 +28,7 @@ def get_blockchain_by_lab(lab_id: str):
 
 def trace_product(lab_id: str, product_serial: str):
     response = requests.get(f"{BASE_URL}/trace/{lab_id}/{product_serial}")
-    if response.status_code != 200:
+    if not response.ok:
         raise BlockchainAPIError("Error trazando producto", response)
-    return response.json()
+    return response  
+

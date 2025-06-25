@@ -3,9 +3,13 @@ from .models import Product, ProductUnit
 from .serializers import ProductSerializer, ProductUnitSerializer
 from .permissions import IsLaboratoryOwner
 from laboratory.models import Laboratory
-from blockchain_client.services import register_event
+from blockchain_client.services import register_event, trace_product
 from blockchain_client.models import BlockchainEvent, Responsible, Geolocation
-from django.utils.timezone import now
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from batch.models import Series
+
 
 # POST /api/v1/products
 class CreateProductView(generics.CreateAPIView):
@@ -89,5 +93,25 @@ class ProductUnitCreateView(generics.CreateAPIView):
 class ProductUnitListView(generics.ListAPIView):
     queryset = ProductUnit.objects.all()
     serializer_class = ProductUnitSerializer
+
+
+class TraceabilityBySeriesView(APIView):
+    def get(self, request, serie):
+        try:
+            # Buscar la serie y el laboratorio asociado
+            serie_obj = Series.objects.select_related('batch__laboratory').get(serie_code=serie)
+            laboratorio = serie_obj.batch.laboratory
+
+            # Llamar a la blockchain
+            response = trace_product(str(laboratorio.id), serie)
+
+            return Response(response.json(), status=response.status_code)
+
+        except Series.DoesNotExist:
+            return Response({"error": "Serie no encontrada"}, status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as e:
+            return Response({"error": "Fallo al consultar la blockchain", "detalle": str(e)}, status=500)
+        
 
 
