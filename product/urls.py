@@ -1,12 +1,12 @@
 from django.urls import path
 
 from .views import (
-    CreateProductView, 
-    ListProductView, 
-    RetrieveProductView, 
-    UpdateProductView, 
-    ProductUnitListView, 
-    ProductUnitCreateView, 
+    CreateProductView,
+    ListProductView,
+    RetrieveProductView,
+    UpdateProductView,
+    ProductUnitListView,
+    ProductUnitCreateView,
     TraceabilityBySeriesView,
     RegisterBlockchainEventView,
     AllAlertsView,

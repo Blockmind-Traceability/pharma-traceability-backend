@@ -7,6 +7,6 @@ djangorestframework-simplejwt>=5.2.2
 Pillow>=10.0.0
 tensorflow==2.19.0
 numpy==2.1.1
-
+django-cors-headers>=4.3
 
 
