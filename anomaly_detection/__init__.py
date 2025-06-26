@@ -1,0 +1,1 @@
+from .ia_model import predict, get_model, preprocess_trace

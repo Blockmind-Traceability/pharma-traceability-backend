@@ -201,3 +201,106 @@ class RegisterBlockchainEventView(APIView):
             return Response({"error": f"Error registrando evento en blockchain: {str(e)}"}, status=500)
 
 
+
+from anomaly_detection import predict as predict_trace
+
+class AllAlertsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        alerts = []
+        units = ProductUnit.objects.select_related('product__laboratory').all()
+
+        for unit in units:
+            lab = unit.product.laboratory
+            try:
+                response = trace_product(str(lab.id), unit.serial_number)
+                if not response.ok:
+                    print(f"Error HTTP al trazar {unit.serial_number}: {response.status_code}")
+                    continue
+
+                json_data = response.json()
+                trace = json_data.get("trace")
+
+                if not isinstance(trace, list):
+                    print(f"'trace' no es una lista válida para {unit.serial_number}: {trace}")
+                    continue
+
+                if len(trace) < 2:
+                    print(f"Trazabilidad muy corta (menos de 2 eventos) para {unit.serial_number}")
+                    continue
+
+                # Realizar predicción
+                try:
+                    probs = predict_trace(trace)
+                except Exception as e:
+                    print(f"Error durante la predicción de {unit.serial_number}: {str(e)}")
+                    continue
+
+                suspicious = [float(p) for p in probs if p >= 0.5]
+
+                if suspicious:
+                    alerts.append({
+                        'product_serial': unit.serial_number,
+                        'lab_id': lab.id,
+                        'suspicious_scores': suspicious,
+                    })
+
+                print(f"{unit.serial_number} - Predicciones: {probs}")
+
+            except Exception as e:
+                print(f"Excepción inesperada para {unit.serial_number}: {str(e)}")
+                continue
+
+        return Response({'alerts': alerts})
+
+
+class LabAlertsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, lab_id: int):
+        alerts = []
+        units = ProductUnit.objects.filter(product__laboratory_id=lab_id).select_related('product__laboratory')
+
+        for unit in units:
+            try:
+                response = trace_product(str(lab_id), unit.serial_number)
+                if not response.ok:
+                    print(f"Error HTTP para {unit.serial_number}: {response.status_code}")
+                    continue
+
+                json_data = response.json()
+                trace = json_data.get("trace")
+
+                if not isinstance(trace, list):
+                    print(f"'trace' no es una lista válida para {unit.serial_number}: {trace}")
+                    continue
+
+                if len(trace) < 2:
+                    print(f"Trazabilidad muy corta (menos de 2 eventos) para {unit.serial_number}")
+                    continue
+
+                try:
+                    probs = predict_trace(trace)
+                except Exception as e:
+                    print(f"Error durante la predicción de {unit.serial_number}: {str(e)}")
+                    continue
+
+                suspicious = [float(p) for p in probs if p >= 0.5]
+
+                if suspicious:
+                    alerts.append({
+                        'product_serial': unit.serial_number,
+                        'lab_id': lab_id,
+                        'suspicious_scores': suspicious,
+                    })
+
+                print(f"{unit.serial_number} - Predicciones: {probs}")
+
+            except Exception as e:
+                print(f"Excepción inesperada para {unit.serial_number}: {str(e)}")
+                continue
+
+        return Response({'alerts': alerts})
+    
+

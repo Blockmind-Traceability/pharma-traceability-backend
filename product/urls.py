@@ -9,6 +9,8 @@ from .views import (
     ProductUnitCreateView, 
     TraceabilityBySeriesView,
     RegisterBlockchainEventView,
+    AllAlertsView,
+    LabAlertsView,
 )
 
 urlpatterns = [
@@ -27,6 +29,7 @@ urlpatterns = [
     
     path('blockchain/events', RegisterBlockchainEventView.as_view(), name='register_blockchain_event'),
 
-
+    path('alerts/', AllAlertsView.as_view(), name='all-alerts'),
+    path('alerts/lab/<int:lab_id>/', LabAlertsView.as_view(), name='lab-alerts'),
 
 ]
