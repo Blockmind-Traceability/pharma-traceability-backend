@@ -2,22 +2,20 @@
 from pathlib import Path
 from datetime import timedelta
 import os
+from dotenv import load_dotenv
 
-
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+load_dotenv()  
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-SECRET_KEY = 'django-insecure-o77v2-d4gqa4kv^#%old3a5*s9ob0lma+8^&#z8$s72+^q4x8z'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 
 AUTH_USER_MODEL = 'authentication.CustomUser'
 
@@ -93,12 +91,12 @@ WSGI_APPLICATION = 'core_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pharma_db',
-        'USER': 'root',
-        'PASSWORD': 'P4ssword',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': os.getenv("DB_ENGINE"),
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'HOST': os.getenv("DB_HOST"),
+        'PORT': os.getenv("DB_PORT"),
     }
 }
 

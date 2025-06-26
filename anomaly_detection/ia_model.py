@@ -56,9 +56,8 @@ def preprocess_trace(trace):
 _model = None
 
 
-def get_model(model_path: str = "modelo_ia.keras"):
-    """Load the Keras model lazily and cache it."""
-
+def get_model():
+    model_path = os.getenv("MODEL_PATH")
     global _model
     if _model is None:
         if not os.path.exists(model_path):

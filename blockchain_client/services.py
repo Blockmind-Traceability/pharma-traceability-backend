@@ -1,8 +1,9 @@
 import requests
 from .models import BlockchainEvent, GenesisBlock
 from .exceptions import BlockchainAPIError
+import os
 
-BASE_URL = "https://blockchain-connection-production.up.railway.app/api"  
+BASE_URL = os.getenv("BLOCKCHAIN_API_URL")
 
 def create_genesis_block(data: GenesisBlock):
     response = requests.post(f"{BASE_URL}/genesis", json=data.__dict__)
