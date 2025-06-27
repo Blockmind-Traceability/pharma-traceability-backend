@@ -7,6 +7,7 @@ from .views import (
     UpdateProductView,
     ProductUnitListView,
     ProductUnitCreateView,
+    ProductUnitSeriesByProductView,
     TraceabilityBySeriesView,
     RegisterBlockchainEventView,
     AllAlertsView,
@@ -21,6 +22,7 @@ urlpatterns = [
 
     path('units/', ProductUnitListView.as_view(), name='unit-list'),
     path('units/create/', ProductUnitCreateView.as_view(), name='unit-create'),
+    path('<int:product_id>/unit-series/', ProductUnitSeriesByProductView.as_view(), name='product-unit-series'),
 
     path('product-units/', ProductUnitListView.as_view(), name='list-product-units'),
     path('product-units/create/', ProductUnitCreateView.as_view(), name='create-product-unit'),

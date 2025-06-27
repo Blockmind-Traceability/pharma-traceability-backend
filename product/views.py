@@ -3,6 +3,7 @@ from .models import Product, ProductUnit
 from .serializers import ProductSerializer, ProductUnitSerializer
 from .permissions import IsLaboratoryOwner
 from laboratory.models import Laboratory
+from django.shortcuts import get_object_or_404
 from blockchain_client.services import register_event, trace_product
 from blockchain_client.models import BlockchainEvent, Responsible, Geolocation
 from rest_framework.views import APIView
@@ -109,6 +110,16 @@ class ProductUnitCreateView(generics.CreateAPIView):
 class ProductUnitListView(generics.ListAPIView):
     queryset = ProductUnit.objects.all()
     serializer_class = ProductUnitSerializer
+
+class ProductUnitSeriesByProductView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, product_id: int):
+        # Ensure the product exists to return 404 if not
+        get_object_or_404(Product, pk=product_id)
+        units = ProductUnit.objects.filter(product_id=product_id)
+        series = list(units.values_list("serial_number", flat=True))
+        return Response({"series": series})
 
 
 class TraceabilityBySeriesView(APIView):
