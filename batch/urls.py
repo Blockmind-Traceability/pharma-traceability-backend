@@ -5,9 +5,10 @@ from .views import (
     RetrieveBatchView,
     RetrieveBatchBySerieView,
     UpdateBatchView,
-    BatchDetailView, 
-    BatchBySerieView, 
-    BatchUpdateView
+    BatchDetailView,
+    BatchBySerieView,
+    BatchUpdateView,
+    MyBatchListView
 )
 
 urlpatterns = [
@@ -20,4 +21,5 @@ urlpatterns = [
     path('<int:id>/', BatchDetailView.as_view(), name='batch-detail'),
     path('by-serie/<str:serie_code>/', BatchBySerieView.as_view(), name='batch-by-serie'),
     path('<int:id>/update/', BatchUpdateView.as_view(), name='batch-update'),
+    path('me/', MyBatchListView.as_view(), name='my-batches'),
 ]

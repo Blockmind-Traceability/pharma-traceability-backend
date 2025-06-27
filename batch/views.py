@@ -56,3 +56,14 @@ class BatchUpdateView(generics.UpdateAPIView):
     queryset = Batch.objects.all()
     serializer_class = BatchDetailSerializer
     lookup_field = 'id'
+
+
+class MyBatchListView(generics.ListAPIView):
+    """List batches created by the authenticated user."""
+    serializer_class = BatchDetailSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Batch.objects.filter(laboratory__user=self.request.user)
+
+
