@@ -54,3 +54,30 @@ class UpdateLaboratoryStatusView(generics.UpdateAPIView):
     lookup_field = 'pk'
 
 
+# GET /api/v1/laboratories/me
+class MyLaboratoryView(generics.RetrieveAPIView):
+    """Retrieve laboratory information for the authenticated user."""
+    serializer_class = LaboratorySerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        try:
+            return self.request.user.laboratory
+        except Laboratory.DoesNotExist:
+            raise generics.exceptions.NotFound("Laboratorio no encontrado para el usuario")
+
+
+# GET /api/v1/laboratories/me/products
+class MyLaboratoryProductsView(generics.ListAPIView):
+    """List all products for the authenticated user's laboratory."""
+    from product.serializers import ProductSerializer  # local import to avoid circular
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        try:
+            lab = self.request.user.laboratory
+        except Laboratory.DoesNotExist:
+            raise generics.exceptions.NotFound("Laboratorio no encontrado para el usuario")
+        return lab.products.all()
+

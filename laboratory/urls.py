@@ -5,6 +5,9 @@ from .views import (
     RetrieveLaboratoryView,
     UpdateLaboratoryView,
     UpdateLaboratoryStatusView,
+    MyLaboratoryView,
+    MyLaboratoryProductsView,
+    
 )
 
 urlpatterns = [
@@ -14,5 +17,7 @@ urlpatterns = [
     path('<int:pk>/status/', UpdateLaboratoryStatusView.as_view(), name='update_status'),  # PUT status
     path('<int:pk>/edit/', UpdateLaboratoryView.as_view(), name='update_laboratory'),  # PUT general
 
+    path("me/", MyLaboratoryView.as_view(), name="my_laboratory"),
+    path("me/products/", MyLaboratoryProductsView.as_view(), name="my_laboratory_products"),
 ]
 
